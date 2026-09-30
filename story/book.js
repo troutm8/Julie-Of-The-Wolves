@@ -37,6 +37,10 @@
       'seal camp': { word: 'Seal camp', def: 'A summer camp by the sea where families hunt seals for food, oil and skins.' },
       ulu: { word: 'Ulu', def: 'A curved knife with a handle on top, used by women for cutting and sewing.' },
       yupik: { word: 'Yup\'ik', def: 'The people Miyax belongs to, from the coasts of western Alaska. The book, written in 1972, uses the older word "Eskimo."' },
+      'bladder feast': { word: 'Bladder Feast', def: 'A winter celebration. The bladders of the seals caught that year are returned to the sea, so the seals\' spirits can go home and come back as new seals.' },
+      mekoryuk: { word: 'Mekoryuk', def: 'The only village on Nunivak Island, where Miyax lived with Aunt Martha and went to school.' },
+      'nunivak island': { word: 'Nunivak Island', def: 'A large island in the Bering Sea, off the west coast of Alaska. Miyax was born there.' },
+      kayak: { word: 'Kayak', def: 'A narrow, covered boat for one hunter, first made by Arctic peoples from skins stretched over a wooden frame.' },
       'san francisco': { word: 'San Francisco', def: 'A big city in California where Miyax\'s pen pal Amy lives.' }
     },
     pagesByChapter: {}

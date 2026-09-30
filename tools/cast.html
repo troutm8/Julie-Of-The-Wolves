@@ -1,0 +1,10 @@
+<!doctype html><meta charset="utf-8"><style>body{margin:0;background:#fff}</style><div id="out"></div>
+<script src="../js/core.js"></script><script src="../js/art-human.js"></script><script src="../js/art-wolf.js"></script>
+<script src="../js/art-props.js"></script><script src="../js/art-world.js"></script><script src="../js/art-animals.js"></script><script src="../js/art-town.js"></script>
+<script>
+const q=new URLSearchParams(location.search);
+const cs=(q.get('c')||'miyax').split(','); const pose=q.get('p')||'stand'; const s=+(q.get('s')||1.5); const e=q.get('e')||'neutral';
+let html='';
+cs.forEach(c=>{ const r=JW.art.characters[c].draw({pose,expr:e,seed:'x'},3/s); html+=`<svg width="220" height="300" viewBox="0 0 220 300" style="border:1px solid #ccc"><text x="6" y="16" font-size="13">${c}</text><g transform="translate(110 280) scale(${s})">${r.svg}</g></svg>`;});
+document.getElementById('out').innerHTML=html;
+</script>

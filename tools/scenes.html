@@ -1,0 +1,17 @@
+<!doctype html><meta charset="utf-8"><style>body{margin:0;background:#333}svg{width:900px;display:block}</style><div id="out"></div>
+<script src="../js/core.js"></script><script src="../js/art-human.js"></script><script src="../js/art-wolf.js"></script>
+<script src="../js/art-props.js"></script><script src="../js/art-world.js"></script><script src="../js/art-animals.js"></script><script src="../js/art-town.js"></script><script src="../js/render.js"></script>
+<script>
+const page={rows:[[1,1,1,1],[1,1,1,1],[1,1,1,1]],panels:[
+ {bg:{scene:'village',sky:'memory',church:0.7,school:0.25,houses:6}},
+ {bg:{scene:'village',sky:'grey',snow:true,houses:8,poles:true,dome:0.85,flakes:40,lit:true}},
+ {bg:{scene:'room',items:[{t:'window',x:0.3,y:0.2,snow:true},{t:'table',x:0.65},{t:'stove',x:0.9},{t:'frame',x:0.6,y:0.2}],lamp:[0.5,0.3]}},
+ {bg:{scene:'room',wall:'#e8e0c8',items:[{t:'board',x:0.5,y:0.12,text:'A B C',text2:'cat  dog'},{t:'flag',x:0.85,y:0.14},{t:'desk',x:0.3},{t:'desk',x:0.7}]}},
+ {bg:{scene:'tent'},props:[{p:'lamp',x:0.5,y:0.9,s:1.4}]},
+ {bg:{scene:'ice',sky:'grey',openWater:[0.5,0.75,0.2]},props:[{p:'seal',x:0.3,y:0.6,s:1},{p:'bladder',x:0.6,y:0.72,s:1.2}]},
+ {bg:{scene:'city'},props:[{p:'cableCar',x:0.6,y:0.9,s:1}]},
+ {bg:{scene:'tundra',sky:'grey',hz:0.6},props:[{p:'plane',x:0.5,y:0.5,s:1.4,spin:true}]},
+ {bg:{scene:'plain',color:'#c9a878'},props:[{p:'fan',x:0.3,y:0.6,s:2},{p:'envelope',x:0.6,y:0.7,s:1.5},{p:'harpoon',x:0.1,y:0.95,s:1},{p:'bag',x:0.85,y:0.9,s:1}]}
+]};
+document.getElementById('out').innerHTML=JW.renderPage(page,{seed:'t'}).svg;
+</script>

@@ -141,6 +141,11 @@
       // Hair mass behind the face.
       if (o.hair === 'long') {
         back += path(smooth([[-14 * k, -8 * k], [-8 * k, -16 * k], [3 * k, -17 * k], [12 * k, -11 * k], [13 * k, -3 * k], [2 * k, 6 * k], [-5 * k, 17 * k], [-13 * k, 20 * k], [-17 * k, 8 * k]], true), o.hairColor, lw);
+      } else if (o.hair === 'bob') {
+        back += path(smooth([[-15 * k, -6 * k], [-9 * k, -16 * k], [3 * k, -17.5 * k], [13 * k, -11 * k], [15 * k, 2 * k], [14 * k, 12 * k], [4 * k, 13 * k], [-8 * k, 13 * k], [-16 * k, 10 * k]], true), o.hairColor, lw);
+      } else if (o.hair === 'bun') {
+        back += el('circle', { cx: -13 * k, cy: -10 * k, r: 6.5 * k, fill: o.hairColor, stroke: INK, 'stroke-width': lw });
+        back += path(smooth([[-14 * k, -4 * k], [-9 * k, -15 * k], [3 * k, -17 * k], [14 * k, -9 * k], [14 * k, 2 * k], [-2 * k, 4 * k], [-14 * k, 6 * k]], true), o.hairColor, lw);
       } else {
         back += path(smooth([[-14 * k, -4 * k], [-9 * k, -15 * k], [3 * k, -17 * k], [14 * k, -9 * k], [14 * k, 2 * k], [-2 * k, 4 * k], [-14 * k, 6 * k]], true), o.hairColor, lw);
       }
@@ -158,6 +163,17 @@
       front += path(smooth([[fx - 12 * k, -3 * k], [fx - 8 * k, -12.5 * k], [fx + 2 * k, -14.5 * k], [fx + 11 * k, -9 * k], [fx + 12.5 * k, -3 * k], [fx + 6 * k, -8 * k], [fx - 5 * k, -8.5 * k]], true, 0.8), o.hairColor, lw * 0.8);
     }
     front += drawFace(o, E, sx, lw);
+    if (o.lines) {
+      // Smile lines and crow's feet for older faces
+      front += path(`M${f(fx + (9 + sx * 3) * k)} ${f(-1 * k)}l${f(3 * k)} ${f(-1.5 * k)}M${f(fx + (9 + sx * 3) * k)} ${f(1.5 * k)}l${f(3 * k)} ${f(0.8 * k)}M${f(fx + (-2 + sx * 4) * k)} ${f(7 * k)}q${f(-2 * k)} ${f(3 * k)} ${f(-0.5 * k)} ${f(5.5 * k)}`, 'none', lw * 0.45);
+    }
+    if (o.mustache) {
+      front += path(`M${f(fx + (-4 + sx * 4) * k)} ${f(8.3 * k)}q${f(4 * k)} ${f(-2.5 * k)} ${f(9 * k)} 0q${f(-4 * k)} ${f(2.2 * k)} ${f(-9 * k)} 0Z`, o.hairColor, lw * 0.5);
+    }
+    if (o.glasses) {
+      [-5.2, 5.2].forEach((ex) => { front += el('circle', { cx: fx + (ex + sx * 3.2) * k, cy: 1 * k, r: 4.3 * k, fill: 'none', stroke: INK, 'stroke-width': lw * 0.55 }); });
+      front += path(`M${f(fx + (-1 + sx * 3.2) * k)} ${f(0.5 * k)}l${f(2 * k)} 0`, 'none', lw * 0.55);
+    }
     const t = `translate(${f(c[0])} ${f(c[1])}) rotate(${f(180 - headA)})`;
     return { back: g(back, { transform: t }), front: g(front, { transform: t }) };
   }
@@ -266,7 +282,7 @@
         const head = drawHead(o, headC, headA, sx, expr, lw, rnd, hood);
         let s = '';
         // Hood lying down behind the neck
-        if (hood !== 'up') {
+        if (hood !== 'up' && !o.noRuff) {
           const hb = add(add(S, dir(T, 1 * k)), side ? [-9 * k, 0] : [0, -2 * k]);
           s += path(spiky(hb[0], hb[1] + 2 * k, (side ? 13 : 21) * k, 8 * k, 14, 3 * k, rnd), o.ruff, lw);
         }
@@ -364,6 +380,45 @@
   };
   JW.art.characters.miyax = human(miyax);
   JW.art.characters.miyaxKid = human(Object.assign({}, miyax, { name: 'miyaxKid', k: 0.6, headK: 0.8 }));
+  const kuspuk = { noRuff: true, spots: false, ruff: '#e8dcc0', ruffDark: '#b9a888' };
+  JW.art.characters.miyaxKuspuk = human(Object.assign({}, miyax, kuspuk, { name: 'miyaxKuspuk', parka: '#7a5ea8', trim: '#f2d24b', band: ['#e9e2d0', '#2d6e8a'] }));
+  JW.art.characters.martha = human(Object.assign({}, kuspuk, {
+    name: 'martha', skin: '#a97a52', hairColor: '#4d4649', parka: '#3f6fa8', trim: '#f2d24b', band: ['#e9e2d0', '#b3352b'],
+    pants: '#3d3a48', boots: '#5a4331', bootTrim: '#e9e2d0', hands: '#a97a52', hair: 'bun', bangs: false, lines: true, k: 1.05, faceW: 1.06
+  }));
+  JW.art.characters.nusan = human(Object.assign({}, kuspuk, {
+    name: 'nusan', skin: '#b07e55', hairColor: '#1c1512', parka: '#a8433a', trim: '#f3e7c8', band: ['#2d6e8a', '#f3e7c8'],
+    pants: '#3d3a48', boots: '#5a4331', bootTrim: '#f3e7c8', hands: '#b07e55', hair: 'bun', bangs: false, k: 1.02, faceW: 1.04
+  }));
+  JW.art.characters.naka = human({
+    name: 'naka', skin: '#9e6c45', hairColor: '#17110e', parka: '#4d5a44', ruff: '#d9c8a5', ruffDark: '#7e6647',
+    trim: '#2f2622', band: ['#e9dcc0', '#2f2622'], pants: '#2e2b33', boots: '#3f3024', bootTrim: '#e9dcc0',
+    hands: '#9e6c45', hair: 'short', bangs: false, k: 1.15, headK: 1.1, faceW: 1.1, mustache: true, lines: true
+  });
+  JW.art.characters.daniel = human({
+    name: 'daniel', skin: '#b08158', hairColor: '#17110e', parka: '#3a4a6b', ruff: '#d9c8a5', ruffDark: '#7e6647',
+    trim: '#e9dcc0', band: ['#b3352b', '#e9dcc0'], pants: '#2e2b33', boots: '#3f3024', bootTrim: '#e9dcc0',
+    hands: '#b08158', hair: 'short', bangs: false, k: 1.12, headK: 1.02, faceW: 1.08
+  });
+  JW.art.characters.pearl = human({
+    name: 'pearl', skin: '#b58659', hairColor: '#1c1512', parka: '#b3503a', ruff: '#f0e6cf', ruffDark: '#b9a888',
+    trim: '#f0e6cf', band: ['#1c1512', '#f2d24b'], pants: '#3d3a48', boots: '#5a4331', bootTrim: '#f0e6cf',
+    hands: '#b58659', hair: 'bob', bangs: true, k: 0.98
+  });
+  JW.art.characters.teacher = human(Object.assign({}, kuspuk, {
+    name: 'teacher', skin: '#efcdb0', hairColor: '#7a4b2a', parka: '#5f7f55', trim: '#e9e2d0', band: ['#e9e2d0', '#5f7f55'],
+    pants: '#4a4452', boots: '#4a3a2c', bootTrim: '#4a4452', hands: '#efcdb0', hair: 'bob', bangs: false, glasses: true, k: 1.08
+  }));
+  JW.art.characters.kidA = human({
+    name: 'kidA', skin: '#b27c50', hairColor: '#1c1512', parka: '#c9803a', ruff: '#e8dcc0', ruffDark: '#b9a888',
+    trim: '#e8dcc0', band: ['#1c1512', '#e8dcc0'], pants: '#3d3a48', boots: '#5a4331', bootTrim: '#e8dcc0',
+    hands: '#b27c50', hair: 'short', bangs: false, k: 0.85
+  });
+  JW.art.characters.kidB = human({
+    name: 'kidB', skin: '#a8744c', hairColor: '#1c1512', parka: '#4f8a8b', ruff: '#e8dcc0', ruffDark: '#b9a888',
+    trim: '#e8dcc0', band: ['#b3352b', '#e8dcc0'], pants: '#3d3a48', boots: '#5a4331', bootTrim: '#e8dcc0',
+    hands: '#a8744c', hair: 'long', bangs: true, k: 0.85
+  });
   JW.art.characters.kapugen = human({
     name: 'kapugen', skin: '#a8744c', hairColor: '#17110e', parka: '#a88462', ruff: '#e3d3b0', ruffDark: '#7e6647',
     trim: '#2f2622', band: ['#e9dcc0', '#b3352b'], pants: '#2e2b33', boots: '#523b2a', bootTrim: '#2f2622',

@@ -219,6 +219,13 @@ PLAN.md               this file
   "Food from the Pack" (7 pages) and Chapter 4 "The Caribou Hunt" (6 pages).
   New art: caribou, night sky with stars, moon and northern lights, sod house,
   drying rack, ulu, meat, dust cloud, and new poses for Miyax and the wolves.
+- **M3 done:** Part Two is complete. Chapter 5 "Seal Camp" (5 pages), Chapter 6
+  "Mekoryuk" (4 pages) and Chapter 7 "Barrow" (6 pages). New cast: Aunt Martha,
+  Naka, Nusan, Daniel, Pearl, a teacher, village children, and Miyax in a
+  school kuspuk. New settings: villages and Barrow in snow, rooms, a classroom,
+  a lamp-lit tent, sea ice, and a San Francisco dream. New props: bush plane,
+  seal, Bladder Feast bladders, dance fan, seal-oil lamp, cable car, letters.
+  Daniel's attack is shown only as a grab, then a black panel.
 
 ## 9. Working on the art
 
