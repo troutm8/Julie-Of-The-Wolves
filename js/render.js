@@ -287,6 +287,16 @@
           const a = rnd() * Math.PI * 2, r0 = (e.r || 0.35) * Math.max(pw, ph), r1 = Math.max(pw, ph);
           s += path(`M${f(c[0] + Math.cos(a) * r0)} ${f(c[1] + Math.sin(a) * r0)}L${f(c[0] + Math.cos(a) * r1)} ${f(c[1] + Math.sin(a) * r1)}`, 'none', 1.2 + rnd() * 2, { stroke: e.color || INK, opacity: 0.6 });
         }
+      } else if (e.type === 'snow') {
+        // Falling snow; heavy snow becomes a blizzard with streaks.
+        const rnd = JW.rng('snow' + pw + 'x' + ph);
+        const n = Math.round(pw * ph / (e.heavy ? 1800 : 5200));
+        for (let i = 0; i < n; i++) {
+          const x = rnd() * pw, y = rnd() * ph, r = 1.4 + rnd() * (e.heavy ? 2.4 : 3.2);
+          if (e.heavy && rnd() < 0.5) s += path(`M${f(x)} ${f(y)}l${f(-18)} ${f(6)}`, 'none', r * 0.8, { stroke: '#ffffff', opacity: 0.8 });
+          else s += el('circle', { cx: x, cy: y, r, fill: '#ffffff', opacity: 0.9 });
+        }
+        if (e.heavy) s += el('rect', { x: 0, y: 0, width: pw, height: ph, fill: '#e8eef4', opacity: 0.35 });
       } else if (e.type === 'tint') {
         s += el('rect', { x: 0, y: 0, width: pw, height: ph, fill: e.color, opacity: e.o || 0.25 });
       } else if (e.type === 'lines') {

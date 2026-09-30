@@ -226,6 +226,15 @@ PLAN.md               this file
   a lamp-lit tent, sea ice, and a San Francisco dream. New props: bush plane,
   seal, Bladder Feast bladders, dance fan, seal-oil lamp, cable car, letters.
   Daniel's attack is shown only as a grab, then a black panel.
+- **M4 done:** Part Three is complete. Chapter 8 "Traveling with the Pack" (4
+  pages), Chapter 9 "Jello" (4), Chapter 10 "The Plane" (5), Chapter 11 "Winter
+  Journey" (4) and Chapter 12 "Kapugen" (5). New art: Tornait the golden
+  plover, snowy skies (day, dusk, night), snow house, dog sled and huskies,
+  falling snow and blizzard effects, Ellen, the hunter and his wife, and
+  Kapugen's modern house. Amaroq's death is shown quietly, with no wounds.
+- **Whole book:** 12 chapters, 69 pages including the cover.
+- **Next (M5 polish):** corrections from your read-through against the book,
+  an "about this comic" page, and any panels you want redrawn.
 
 ## 9. Working on the art
 

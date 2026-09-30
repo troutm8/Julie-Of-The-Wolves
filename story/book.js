@@ -41,6 +41,8 @@
       mekoryuk: { word: 'Mekoryuk', def: 'The only village on Nunivak Island, where Miyax lived with Aunt Martha and went to school.' },
       'nunivak island': { word: 'Nunivak Island', def: 'A large island in the Bering Sea, off the west coast of Alaska. Miyax was born there.' },
       kayak: { word: 'Kayak', def: 'A narrow, covered boat for one hunter, first made by Arctic peoples from skins stretched over a wooden frame.' },
+      tornait: { word: 'Tornait', def: 'The name Miyax gives the little golden plover she rescues and carries in her hood.' },
+      kangik: { word: 'Kangik', def: 'The village where Miyax finally finds her father, Kapugen.' },
       'san francisco': { word: 'San Francisco', def: 'A big city in California where Miyax\'s pen pal Amy lives.' }
     },
     pagesByChapter: {}

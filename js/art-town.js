@@ -145,6 +145,19 @@
         s += el('rect', { x, y, width: 60 * sc, height: 38 * sc, fill: '#f3ece0', stroke: INK, 'stroke-width': lw * 0.6 });
         for (let i = 0; i < 4; i++) s += el('rect', { x, y: y + i * 9.5 * sc + 1, width: 60 * sc, height: 4.5 * sc, fill: '#b3352b' });
         s += el('rect', { x, y, width: 24 * sc, height: 19 * sc, fill: '#2d4a8a', stroke: INK, 'stroke-width': lw * 0.4 });
+      } else if (it.t === 'radio') {
+        s += el('rect', { x: x - 40 * sc, y, width: 80 * sc, height: 50 * sc, rx: 6 * sc, fill: '#8a5a3a', stroke: INK, 'stroke-width': lw * 0.8 });
+        s += el('circle', { cx: x - 15 * sc, cy: y + 25 * sc, r: 14 * sc, fill: '#d9c7a0', stroke: INK, 'stroke-width': lw * 0.5 });
+        s += el('circle', { cx: x + 22 * sc, cy: y + 18 * sc, r: 5 * sc, fill: '#3a3a3a' });
+        s += path(`M${f(x + 10 * sc)} ${f(y)}l${f(20 * sc)} ${f(-40 * sc)}`, 'none', lw * 0.6);
+      } else if (it.t === 'bulb') {
+        s += path(`M${f(x)} -5V${f(y)}`, 'none', lw * 0.6);
+        s += el('circle', { cx: x, cy: y + 10 * sc, r: 12 * sc, fill: '#fff4b0', stroke: INK, 'stroke-width': lw * 0.6 });
+        s += el('circle', { cx: x, cy: y + 10 * sc, r: 40 * sc, fill: '#fff4b0', opacity: 0.25 });
+      } else if (it.t === 'photoPlane') {
+        s += el('rect', { x: x - 34 * sc, y, width: 68 * sc, height: 46 * sc, fill: '#f7f1de', stroke: INK, 'stroke-width': lw * 0.7 });
+        s += el('rect', { x: x - 28 * sc, y: y + 5 * sc, width: 56 * sc, height: 32 * sc, fill: '#b9d4e3' });
+        s += g(P.plane({}, lw * 2.4).svg, { transform: `translate(${f(x + 4 * sc)} ${f(y + 32 * sc)}) scale(${f(0.2 * sc)})` });
       } else if (it.t === 'parkas') {
         for (let i = 0; i < 3; i++) {
           const px = x + i * 70 * sc;

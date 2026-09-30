@@ -1,0 +1,14 @@
+<!doctype html><meta charset="utf-8"><style>body{margin:0;background:#333}svg{width:900px;display:block}</style><div id="out"></div>
+<script src="../js/core.js"></script><script src="../js/art-human.js"></script><script src="../js/art-wolf.js"></script>
+<script src="../js/art-props.js"></script><script src="../js/art-world.js"></script><script src="../js/art-animals.js"></script><script src="../js/art-town.js"></script><script src="../js/render.js"></script>
+<script>
+const page={rows:[[1,1,1],[1,1,1]],panels:[
+ {bg:{scene:'tundra',sky:'snow',hz:0.5,tufts:0,polygons:false},props:[{p:'plover',x:0.5,y:0.8,s:3}]},
+ {bg:{scene:'tundra',sky:'snowNight',hz:0.55,tufts:0,polygons:false,aurora:true},props:[{p:'snowHouse',x:0.5,y:0.85,s:1.4,lit:true}]},
+ {bg:{scene:'tundra',sky:'snowDusk',hz:0.5,tufts:0,polygons:false},props:[{p:'sled',x:0.3,y:0.9,s:1}],cast:[{c:'husky',pose:'trot',x:0.6,y:0.9,s:0.9,tweak:{tail:-160,tailBend:70}},{c:'husky2',pose:'trot',x:0.85,y:0.92,s:0.9,tweak:{tail:-160,tailBend:70}}]},
+ {bg:{scene:'tundra',sky:'snow',hz:0.5,tufts:0,polygons:false},fx:[{type:'snow',heavy:true}],cast:[{c:'miyax',pose:'walk',hood:'up',x:0.5,y:0.9,s:1.8}]},
+ {bg:{scene:'room',items:[{t:'radio',x:0.3,y:0.35},{t:'bulb',x:0.6,y:0.1},{t:'photoPlane',x:0.8,y:0.2}]},cast:[{c:'ellen',pose:'stand',x:0.5,y:0.95,s:1.6,expr:'happy'}]},
+ {bg:{scene:'tundra',sky:'snow',hz:0.5,tufts:0,polygons:false},cast:[{c:'hunter',pose:'stand',x:0.35,y:0.95,s:1.6,expr:'happy'},{c:'hunterWife',pose:'stand',x:0.65,y:0.95,s:1.6,expr:'happy',flip:true}]}
+]};
+document.getElementById('out').innerHTML=JW.renderPage(page,{seed:'t'}).svg;
+</script>

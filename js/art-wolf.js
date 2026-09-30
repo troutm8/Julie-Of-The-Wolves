@@ -290,6 +290,9 @@
   JW.art.characters.silver = W({ name: 'silver', base: '#b9c0c6', dark: '#7d8791', light: '#f2f1ea', size: 0.98 });
   JW.art.characters.nails = W({ name: 'nails', base: '#8c7a66', dark: '#4a3e34', light: '#d9cdb8', size: 1.02 });
   JW.art.characters.jello = W({ name: 'jello', base: '#a8977b', dark: '#6d5f4b', light: '#dcd1bb', size: 0.96, lean: 0.86, fluff: 0.8, eye: '#c9b245' });
+  // Sled dogs share the wolf rig, with a tail that curls up over the back.
+  JW.art.characters.husky = W({ name: 'husky', base: '#8f969e', dark: '#3a3a42', light: '#f2f1ea', size: 0.82, eye: '#8fc3e0', tailK: 0.8 });
+  JW.art.characters.husky2 = W({ name: 'husky2', base: '#b0845a', dark: '#5a3f2a', light: '#f2e8d8', size: 0.8, eye: '#c98a2a', tailK: 0.8 });
   const pup = { headK: 1.28, legK: 1.05, fluff: 1.2, tailK: 0.75, snout: 0.72, earK: 1.1 };
   JW.art.characters.kapu = W(Object.assign({ name: 'kapu', base: '#4c4a52', dark: '#1f1d24', light: '#c8c6c0', size: 0.66 }, pup));
   JW.art.characters.sister = W(Object.assign({ name: 'sister', base: '#b3aca0', dark: '#6f6860', light: '#efeae0', size: 0.6 }, pup));

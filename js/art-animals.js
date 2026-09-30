@@ -166,6 +166,48 @@
     }
     return { svg: s };
   };
+  // Tornait, the little golden plover. Speckled gold back, black face and belly, white stripe.
+  Pp.plover = (o, lw) => {
+    const up = o.pose === 'fly';
+    let s = '';
+    s += path('M-2 0 L-4 -10 M4 0 L3 -10', 'none', lw * 0.8, { stroke: '#3a3a3a' });
+    s += path(smooth([[-22, -16], [-14, -22], [2, -24], [14, -20], [18, -14], [10, -9], [-6, -9], [-18, -12]], true, 0.9), '#1f1d1c', lw);
+    s += path(smooth([[-24, -18], [-14, -26], [4, -28], [14, -22], [4, -20], [-14, -18]], true, 0.9), '#c9a13a', lw * 0.8);
+    for (let i = 0; i < 6; i++) s += el('circle', { cx: -16 + i * 5, cy: -23 + (i % 2) * 2, r: 1.2, fill: '#3a2e1a' });
+    // Head
+    s += el('circle', { cx: 16, cy: -26, r: 7, fill: '#1f1d1c', stroke: INK, 'stroke-width': lw * 0.8 });
+    s += path('M10 -31 Q16 -35 22 -31 Q20 -22 24 -17', 'none', lw * 1.1, { stroke: '#f6f2e8' });
+    s += path('M11 -31 Q16 -34 21 -31', 'none', lw * 0.8, { stroke: '#c9a13a' });
+    s += el('circle', { cx: 18, cy: -27, r: 1.5, fill: '#fff' });
+    s += path('M22 -26 L28 -25 L22 -24 Z', '#1f1d1c', lw * 0.5);
+    if (up) s += path(smooth([[-8, -22], [-20, -44], [-4, -40], [6, -24]], true, 0.8), '#c9a13a', lw * 0.8);
+    s += path('M-22 -16 L-30 -14 L-22 -12 Z', '#1f1d1c', lw * 0.6);
+    return { svg: s };
+  };
+  // A house of snow blocks.
+  Pp.snowHouse = (o, lw) => {
+    let s = path('M-100 0 A100 88 0 0 1 100 0 Z', '#f3f6f9', lw);
+    for (let r = 1; r < 5; r++) {
+      const y = -r * 18, hw = Math.sqrt(Math.max(0, 1 - (y / 88) * (y / 88))) * 100;
+      s += path(`M${f(-hw)} ${f(y)}H${f(hw)}`, 'none', lw * 0.45, { stroke: '#a9b8c6' });
+      for (let x = -hw + (r % 2) * 16; x < hw; x += 32) s += path(`M${f(x)} ${f(y)}v18`, 'none', lw * 0.45, { stroke: '#a9b8c6' });
+    }
+    s += path('M-30 0 L-30 -26 A30 26 0 0 1 30 -26 L30 0 Z', '#dfe7ee', lw);
+    s += path('M-22 0 L-22 -22 A22 20 0 0 1 22 -22 L22 0 Z', o.lit ? '#f7d58a' : '#3a4a5a', lw * 0.8);
+    return { svg: s };
+  };
+  Pp.sled = (o, lw) => ({
+    svg: path('M-80 0 H70 Q90 0 92 -14', 'none', lw * 2.4) + path('M-80 0 H70 Q90 0 92 -14', 'none', lw * 1.2, { stroke: '#a88462' }) +
+      path(poly([[-76, -8], [70, -8], [70, -30], [-76, -30]]), '#7a5a3a', lw) +
+      path('M-76 -30 L-86 -60 M-60 -30 L-70 -60 M-86 -60 H-70', 'none', lw * 1.2) +
+      path(smooth([[-60, -30], [-40, -48], [20, -50], [60, -32]], true, 0.9), '#c3a57b', lw * 0.8) +
+      (o.line ? path(`M92 -14 L${92 + o.line} -40`, 'none', lw * 0.8) : '')
+  });
+  Pp.tracks = (o, lw) => {
+    let s = '';
+    for (let i = 0; i < 8; i++) s += el('ellipse', { cx: -140 + i * 40, cy: (i % 2) * 8 - 4, rx: 7, ry: 4, fill: '#b9c5cf', stroke: INK, 'stroke-width': lw * 0.4 });
+    return { svg: s };
+  };
   Pp.fire = (o, lw) => ({
     svg: path('M-16 0 L16 -6 M-16 -6 L16 0', 'none', lw * 2.2, { stroke: '#5a4230' }) +
       path('M-12 -4 Q-14 -24 -2 -34 Q-4 -22 4 -18 Q6 -30 12 -34 Q16 -16 10 -4 Z', '#f2a531', lw * 0.8) +

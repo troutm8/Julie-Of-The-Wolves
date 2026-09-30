@@ -12,6 +12,9 @@
     grey: { top: '#9fa9b0', mid: '#c4cacb', low: '#dfe1dc', sun: null, far: '#8e9794', land: '#a29d6c', land2: '#878356', heave: '#949a61', line: '#6f6d49' },
     night: { top: '#0d1433', mid: '#1f2d5c', low: '#3a4f7e', sun: null, far: '#2d3a58', land: '#3d4a4a', land2: '#2c3636', heave: '#44524d', line: '#27302e', stars: true },
     sunset: { top: '#3d4f8a', mid: '#e0897a', low: '#fbc774', sun: '#ff9e45', far: '#6d5a78', land: '#8a7650', land2: '#6b5a3e', heave: '#7e7650', line: '#584a33' },
+    snow: { top: '#8e9fb4', mid: '#c3cdd8', low: '#e4e9ee', sun: '#fdf3cf', far: '#9aa9b8', land: '#eef2f5', land2: '#d2dbe3', heave: '#e2e8ee', line: '#b9c5cf' },
+    snowDusk: { top: '#3d4a7a', mid: '#8a7aa0', low: '#e0a88a', sun: '#ffb45a', far: '#6e7090', land: '#dfe3ec', land2: '#b9c0d2', heave: '#d3d8e4', line: '#a3abc0' },
+    snowNight: { top: '#0d1433', mid: '#1f2d5c', low: '#3a4f7e', sun: null, far: '#2d3a58', land: '#9eaac4', land2: '#6f7c9a', heave: '#8e9ab6', line: '#6b7896', stars: true },
     memory: { top: '#e8c98d', mid: '#f3dcaa', low: '#f8ead0', sun: '#fff4d0', far: '#b8a58a', land: '#c9b287', land2: '#b39c73', heave: '#bfa878', line: '#9a8563' }
   };
   JW.SKIES = SKIES;

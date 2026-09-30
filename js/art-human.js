@@ -419,6 +419,21 @@
     trim: '#e8dcc0', band: ['#b3352b', '#e8dcc0'], pants: '#3d3a48', boots: '#5a4331', bootTrim: '#e8dcc0',
     hands: '#a8744c', hair: 'long', bangs: true, k: 0.85
   });
+  JW.art.characters.ellen = human({
+    name: 'ellen', skin: '#f1d2b6', hairColor: '#c9923f', parka: '#4f7fa8', ruff: '#f0e6cf', ruffDark: '#b9a888',
+    trim: '#f0e6cf', band: ['#f0e6cf', '#4f7fa8'], pants: '#4a4452', boots: '#5a4331', bootTrim: '#f0e6cf',
+    hands: '#f1d2b6', hair: 'bob', bangs: true, k: 1.08, noRuff: true
+  });
+  JW.art.characters.hunter = human({
+    name: 'hunter', skin: '#a2704a', hairColor: '#17110e', parka: '#7a5a3a', ruff: '#e3d3b0', ruffDark: '#7e6647',
+    trim: '#e9dcc0', band: ['#2f2622', '#e9dcc0'], pants: '#2e2b33', boots: '#3f3024', bootTrim: '#e9dcc0',
+    hands: '#a2704a', hair: 'short', bangs: false, k: 1.12, headK: 1.06, faceW: 1.08, lines: true
+  });
+  JW.art.characters.hunterWife = human({
+    name: 'hunterWife', skin: '#ad7a50', hairColor: '#1c1512', parka: '#b9a07a', ruff: '#e8dcc0', ruffDark: '#9a8360',
+    trim: '#e9dcc0', band: ['#b3352b', '#2f2622'], pants: '#3d3a48', boots: '#5a4331', bootTrim: '#e9dcc0',
+    hands: '#ad7a50', hair: 'bun', bangs: false, k: 1.02, faceW: 1.05
+  });
   JW.art.characters.kapugen = human({
     name: 'kapugen', skin: '#a8744c', hairColor: '#17110e', parka: '#a88462', ruff: '#e3d3b0', ruffDark: '#7e6647',
     trim: '#2f2622', band: ['#e9dcc0', '#b3352b'], pants: '#2e2b33', boots: '#523b2a', bootTrim: '#2f2622',
