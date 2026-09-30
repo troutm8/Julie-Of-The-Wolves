@@ -26,9 +26,11 @@ This environment has no image-generation model. Instead, the art is drawn as
   (background + characters + props + lighting) makes that practical.
 - **A crisp look at any screen size, from a small set of files.**
 
-**Style:** flat, layered shapes with limited palettes and soft gradients, similar
-to a painted picture book or a paper-cut look. The tundra is shown through
-layered horizons, sky color and light rather than fine detail.
+**Style (decided):** a classic comic look with bold black ink outlines, flat
+colors with one shade tone, hand-lettered balloons (Comic Neue) and punchy titles
+and sound effects (Bangers). The tundra is shown through layered horizons, the
+cracked polygon ground of the North Slope, sky color and light rather than fine
+detail.
 
 **Palettes that set the mood:**
 
@@ -145,7 +147,7 @@ I'll check event order and details when I script each chapter.
     modern ways. Tornait dies. She sings to the spirit of Amaroq, then points her
     boots toward Kapugen.
 
-**Handling sensitive content** (to be confirmed with you):
+**Handling sensitive content** (confirmed: the reader is 10 and reading the book in 5th grade):
 
 - **Daniel's attack (Chapter 7).** It is shown only by suggestion: he grabs her
   arm, the panel cuts to black, then she is running. Nothing more is depicted.
@@ -183,26 +185,45 @@ you can read it and send feedback.
 The pilot matters most. Once the art kit and the look are settled, the remaining
 chapters mostly reuse it.
 
-## 6. Repo layout (planned)
+## 6. Repo layout
 
 ```
 index.html            reader shell
-css/reader.css        layout, panels, lettering
-js/reader.js          navigation, page layout, bookmarks
-js/render.js          turns a panel script into SVG
-art/characters/*.js   Miyax, wolves, people, animals (pose + expression)
-art/scenes/*.js       backgrounds by location and light
-art/props/*.js        props and effects
-story/chNN.json       chapter scripts
-story/glossary.json   Yupik words
+js/core.js            geometry and SVG helpers
+js/art-human.js       people rig: poses, faces, parkas
+js/art-wolf.js        wolf rig: poses, front-facing portrait
+js/art-world.js       backgrounds by location and light
+js/art-props.js       props and effects
+js/render.js          page layout, lettering, panel art
+js/reader.js          navigation, panel view, chapters menu, bookmarks
+story/book.js         chapter list, glossary, cover
+story/chNN.js         chapter scripts
 PLAN.md               this file
 ```
 
-## 7. Open questions
+## 7. Decisions so far
 
-1. **Your daughter's age.** This decides how much of Chapter 7 and Chapter 10 to
-   show (see "Handling sensitive content").
-2. **Do you have a copy of the book?** I'm working from memory. Any details you
-   want kept exactly (favorite moments or lines) are welcome.
-3. **Style.** Is the stylized paper-cut / picture-book look right, or would you
-   prefer something more like a classic comic with bold outlines?
+- **Reader:** 10 years old, reading the book in 5th grade. Hard scenes are
+  suggested, not shown.
+- **Style:** classic comic with bold outlines.
+- **Source:** you have the book and are reading it now. Corrections on details
+  (wolf colors, who does what, favorite lines) are welcome after each chapter.
+
+## 8. Status
+
+- **M1 done:** the reader (page and panel views, chapters menu, glossary,
+  saved place), the art kit (Miyax, young Miyax, Kapugen, Amaroq, Silver, Nails,
+  Jello, Kapu, Sister, Zing, Zat, tundra, sky and shore backgrounds, props) and
+  Chapter 1 (9 pages).
+
+## 9. Working on the art
+
+`tools/` has two preview pages for developing art (open them from a local
+checkout):
+
+- `tools/sheet.html?c=miyax&p=stand,walk,prone` shows one character in several
+  poses.
+- `tools/proof.html?ch=1` renders every page of a chapter.
+
+`node tools/shot.js "<page>" out.png` takes a screenshot of either with
+Playwright.

@@ -1,0 +1,23 @@
+<!doctype html><meta charset="utf-8"><style>body{margin:0;background:#fff}</style>
+<div id="out"></div>
+<script src="../js/core.js"></script>
+<script src="../js/art-human.js"></script>
+<script src="../js/art-wolf.js"></script>
+<script src="../js/art-props.js"></script>
+<script>
+const q = new URLSearchParams(location.search);
+const which = q.get('c') || 'miyax';
+const items = (q.get('p')||'stand').split(',');
+const s = +(q.get("s")||1.6); const W = +(q.get("w")||300);
+const expr = q.get('e');
+let html='';
+items.forEach((p,i)=>{
+  const [pose,ex] = p.split(':');
+  const ch = JW.art.characters[which];
+  const lw = 3/s;
+  let r;
+  try { r = ch.draw({pose, expr: ex||expr, hood: q.get('hood')||undefined, seed:'x'}, lw); } catch(e){ r={svg:'<text y="-20" font-size="8">'+e.message+'</text>'}; console.log(e.stack)}
+  html += `<svg width="${W}" height="${W}" viewBox="0 0 ${W} ${W}" style="border:1px solid #ccc"><text x="6" y="16" font-size="13">${p}</text><line x1="0" x2="${W}" y1="${W-50}" y2="${W-50}" stroke="#ccc"/><g transform="translate(${W/2} ${W-50}) scale(${s})">${r.svg}</g></svg>`;
+});
+document.getElementById('out').innerHTML = html;
+</script>

@@ -1,0 +1,19 @@
+<!doctype html><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,400;0,700;1,700&display=swap">
+<style>body{margin:0;background:#333;display:flex;flex-wrap:wrap;gap:10px;padding:10px}.pg{width:var(--w,600px);background:#fff}.pg svg{width:100%;display:block}.gl{text-decoration:underline dotted}</style>
+<div id="out"></div>
+<script src="../js/core.js"></script><script src="../js/art-human.js"></script><script src="../js/art-wolf.js"></script>
+<script src="../js/art-props.js"></script><script src="../js/art-world.js"></script><script src="../js/render.js"></script>
+<script src="../story/book.js"></script><script src="../story/ch01.js"></script>
+<script>
+const q=new URLSearchParams(location.search);
+document.body.style.setProperty('--w',(q.get('w')||600)+'px');
+Promise.all([document.fonts.load('700 25px "Comic Neue"'),document.fonts.load('40px "Bangers"')]).catch(()=>0).then(()=>{
+  const ch=+(q.get('ch')||1);
+  let list = ch===0 ? [JW.book.cover] : JW.book.pagesByChapter[ch];
+  const only=q.get('p'); let html='';
+  list.forEach((p,i)=>{ if(only && !only.split(',').includes(String(i+1))) return;
+    try{ html+='<div class="pg">'+JW.renderPage(p,{seed:'pg'+i,number:i+1}).svg+'</div>'; }catch(e){console.log('ERR page',i+1,e.stack)} });
+  document.body.innerHTML=html; document.title='done';
+});
+</script>

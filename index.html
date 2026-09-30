@@ -1,0 +1,166 @@
+<title>Julie of the Wolves</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,400;0,700;1,700&display=swap">
+<style>
+/* Layout: a dark reading room (the Arctic night) with the comic page as the lit paper in the middle. */
+:root {
+  color-scheme: dark;
+  --night: #131826;
+  --night-2: #1b2234;
+  --line: #2c3550;
+  --paper: #fbf6ea;
+  --ink: #17110e;
+  --gold: #f2c230;
+  --ice: #cfe3ec;
+  --muted: #98a2b8;
+  --font-display: 'Bangers', 'Impact', 'Arial Black', sans-serif;
+  --font-body: 'Comic Neue', 'Comic Sans MS', 'Chalkboard SE', cursive;
+  --bar-h: 54px;
+}
+html, body { height: 100%; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  background: var(--night);
+  color: var(--ice);
+  font-family: var(--font-body);
+  font-weight: 700;
+  overflow: hidden;
+}
+.app { height: 100%; display: flex; flex-direction: column; }
+.bar {
+  flex: none;
+  display: flex; align-items: center; gap: 10px;
+  padding-inline: 16px; min-height: var(--bar-h);
+  background: var(--night-2);
+  border-bottom: 1px solid var(--line);
+}
+.bar.bottom { border-bottom: 0; border-top: 1px solid var(--line); justify-content: space-between; }
+.brand {
+  font-family: var(--font-display); font-weight: 400; font-size: 26px; letter-spacing: 1.5px;
+  color: var(--gold); margin: 0; line-height: 1; white-space: nowrap;
+  text-shadow: 2px 2px 0 #000;
+}
+.spacer { flex: 1; min-width: 0; }
+button {
+  font: inherit; color: var(--ice); background: transparent;
+  border: 2px solid var(--line); border-radius: 10px;
+  padding: 7px 12px; cursor: pointer; line-height: 1.1;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+button:hover { border-color: var(--muted); }
+button:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+button[aria-pressed="true"] { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+button:disabled { opacity: 0.35; cursor: default; }
+.nav-btn { font-family: var(--font-display); font-weight: 400; font-size: 22px; letter-spacing: 1px; padding: 6px 16px; }
+.nav-btn.next { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+.where { text-align: center; min-width: 0; font-size: 15px; color: var(--muted); }
+.where strong { color: var(--ice); display: block; font-size: 16px; }
+.seg { display: inline-flex; border: 2px solid var(--line); border-radius: 10px; overflow: hidden; }
+.seg button { border: 0; border-radius: 0; padding: 7px 10px; }
+.stage {
+  flex: 1; min-height: 0; position: relative;
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+  padding: 14px 16px;
+  touch-action: pan-y;
+  user-select: none; -webkit-user-select: none;
+}
+.sheet {
+  height: 100%; max-width: 100%; aspect-ratio: 2 / 3;
+  background: var(--paper);
+  box-shadow: 0 10px 40px rgba(0,0,0,.55), 0 0 0 1px rgba(0,0,0,.4);
+  border-radius: 3px;
+  display: flex;
+}
+.sheet svg { width: 100%; height: 100%; display: block; }
+.stage.panel-mode .sheet { aspect-ratio: auto; width: 100%; height: 100%; background: transparent; box-shadow: none; }
+.progress { height: 4px; background: var(--line); flex: none; }
+.progress > div { height: 100%; background: var(--gold); width: 0; transition: width .3s; }
+.focus-mask { fill: var(--night); }
+.gl { text-decoration: underline dotted; text-decoration-thickness: 2px; cursor: help; fill: #173f7a; }
+/* Drawer */
+.drawer {
+  position: fixed; inset: 0; z-index: 10;
+  background: rgba(8,10,18,.6);
+  display: flex; justify-content: flex-end;
+}
+.drawer .panel {
+  width: min(420px, 100%); height: 100%; overflow-y: auto;
+  background: var(--night-2); border-left: 1px solid var(--line);
+  padding: 20px 20px 40px; box-sizing: border-box;
+}
+.drawer h2 { font-family: var(--font-display); font-weight: 400; letter-spacing: 1.5px; color: var(--gold); font-size: 30px; margin: 0 0 4px; }
+.drawer h3 { font-family: var(--font-display); font-weight: 400; letter-spacing: 1px; font-size: 20px; color: var(--muted); margin: 22px 0 8px; }
+.drawer .close { float: right; }
+.chapters { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.chapters button { width: 100%; justify-content: space-between; text-align: left; border-color: transparent; background: rgba(255,255,255,.03); }
+.chapters button:not(:disabled):hover { border-color: var(--gold); }
+.chapters .num { font-family: var(--font-display); font-weight: 400; color: var(--gold); font-size: 20px; width: 28px; flex: none; }
+.chapters .name { flex: 1; min-width: 0; }
+.chapters .state { font-size: 13px; color: var(--muted); }
+.glossary dt { font-family: var(--font-display); font-weight: 400; letter-spacing: 1px; color: var(--gold); font-size: 19px; margin-top: 10px; }
+.glossary dd { margin: 2px 0 0; font-weight: 400; line-height: 1.4; color: var(--ice); }
+.note { font-weight: 400; color: var(--muted); line-height: 1.45; font-size: 15px; }
+.pop {
+  position: fixed; z-index: 20; max-width: min(300px, calc(100% - 32px));
+  background: var(--paper); color: var(--ink); border: 3px solid var(--ink); border-radius: 12px;
+  padding: 10px 14px; box-shadow: 4px 4px 0 var(--ink); font-size: 16px; line-height: 1.35;
+}
+.pop b { font-family: var(--font-display); font-weight: 400; letter-spacing: 1px; font-size: 20px; display: block; }
+.pop span { font-weight: 400; }
+.loading { color: var(--muted); font-size: 18px; }
+@media (max-width: 640px) {
+  .bar { gap: 8px; padding-inline: 12px; }
+  .brand { font-size: 19px; letter-spacing: 1px; white-space: normal; line-height: .95; }
+  .seg button { padding: 7px 8px; }
+  #openMenu { padding: 7px 9px; }
+  .hide-sm { display: none; }
+  .nav-btn { padding: 6px 12px; }
+  .stage { padding: 8px; }
+}
+@media (prefers-reduced-motion: reduce) { .progress > div { transition: none; } }
+</style>
+
+<div class="app" id="app">
+  <header class="bar">
+    <h1 class="brand">Julie of the Wolves</h1>
+    <div class="spacer"></div>
+    <div class="seg" role="group" aria-label="How to read">
+      <button id="modePage" aria-pressed="true" title="See whole pages">Page</button>
+      <button id="modePanel" aria-pressed="false" title="Zoom in one panel at a time">Panel</button>
+    </div>
+    <button id="openMenu" aria-haspopup="dialog">Chapters</button>
+  </header>
+  <main class="stage" id="stage" aria-live="polite">
+    <p class="loading">Opening the book…</p>
+  </main>
+  <div class="progress" aria-hidden="true"><div id="progress"></div></div>
+  <footer class="bar bottom">
+    <button class="nav-btn" id="prev" aria-label="Previous">◀ Back</button>
+    <div class="where" id="where"></div>
+    <button class="nav-btn next" id="next" aria-label="Next">Next ▶</button>
+  </footer>
+</div>
+
+<div class="drawer" id="drawer" hidden role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+  <div class="panel">
+    <button class="close" id="closeMenu">Close</button>
+    <h2 id="drawerTitle">Chapters</h2>
+    <p class="note">Adapted as a comic for our family from the novel by Jean Craighead George (1972).</p>
+    <div id="chapterList"></div>
+    <h3>Words to know</h3>
+    <dl class="glossary" id="glossary"></dl>
+  </div>
+</div>
+<div class="pop" id="pop" hidden></div>
+
+<script src="js/core.js"></script>
+<script src="js/art-human.js"></script>
+<script src="js/art-wolf.js"></script>
+<script src="js/art-props.js"></script>
+<script src="js/art-world.js"></script>
+<script src="js/render.js"></script>
+<script src="story/book.js"></script>
+<script src="story/ch01.js"></script>
+<script src="js/reader.js"></script>
