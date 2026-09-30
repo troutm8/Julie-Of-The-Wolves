@@ -21,6 +21,9 @@
     crouch: { tilt: 4, fn: [58, -18], ff: [50, -25], hn: [62, -48, 24], hf: [66, -44, 26], neck: 108, head: 26, tail: 20, tailBend: 30, ears: 'back', mouth: 'lick' },
     cower: { tilt: 6, fn: [48, -26], ff: [40, -30], hn: [64, -50, 22], hf: [70, -44, 24], neck: 72, head: -12, tail: 20, tailBend: 40, ears: 'flat' },
     pounce: { tilt: -32, fn: [118, 150], ff: [100, 130], hn: [28, -22, 12], hf: [34, -16, 16], neck: 130, head: 0, tail: -120, mouth: 'pant' },
+    glare: { tilt: 3, fn: [6, 2], ff: [-6, -4], hn: [18, -34, 2], hf: [24, -28, 4], neck: 100, head: -6, tail: -95, tailBend: 0, eye: 'wide', hackles: true },
+    feed: { tilt: 6, fn: [10, 4], ff: [2, 0], hn: [20, -30, 3], hf: [26, -24, 6], neck: 70, head: -30, tail: -40, mouth: 'open' },
+    greet: { tilt: 0, fn: [2, 0], ff: [-4, -3], hn: [20, -30, 3], hf: [26, -24, 6], neck: 115, head: -4, tail: -70, ears: 'back', mouth: 'pant' },
     headDown: { tilt: 2, fn: [4, 0], ff: [-4, -3], hn: [20, -30, 3], hf: [26, -24, 6], neck: 85, head: -18, tail: -100 },
     faceFront: { special: 'front' }
   };
@@ -133,6 +136,11 @@
         }
         s += g(marks, { 'clip-path': `url(#${clipB})` });
         s += path(bodyD, 'none', lw);
+        // Raised hackles along the neck and shoulders
+        if (pose.hackles) {
+          const hk2 = B([[0, -26], [14, -30], [26, -34], [38, -34], [48, -28]]);
+          s += path(poly(JW.furStrip(hk2, -8 * k, rnd).concat([Bp([44, -22]), Bp([0, -22])])), C.dark, lw * 0.8);
+        }
         // Near hind leg over the body
         s += hindLeg(pose.hn, false);
         // Neck

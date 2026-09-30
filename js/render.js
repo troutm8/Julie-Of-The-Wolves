@@ -329,6 +329,9 @@
 
   JW.renderPage = function (page, meta) {
     const rects = layoutRects(page);
+    if (rects.length !== page.panels.length && !page.panels.every((P) => P.rect)) {
+      console.warn(`Layout has ${rects.length} slots but ${page.panels.length} panels: ${meta.label || meta.seed}`);
+    }
     const seed = meta.seed || 'p';
     let defs = el('filter', { id: 'memoryTone', 'color-interpolation-filters': 'sRGB' },
       el('feColorMatrix', { type: 'matrix', values: '0.62 0.32 0.1 0 0.04  0.5 0.42 0.08 0 0.03  0.36 0.32 0.2 0 0.02  0 0 0 1 0' }));

@@ -20,11 +20,22 @@
     prone: { torso: 86, head: 140, arms: { n: [4, 150], f: [-6, 140] }, legs: { n: [-88, -95], f: [-92, -100] } },
     proneLow: { torso: 90, head: 108, arms: { n: [2, 100], f: [-6, 95] }, legs: { n: [-88, -95], f: [-92, -100] } },
     sit: { torso: 172, head: 176, arms: { n: [45, 110], f: [35, 100] }, legs: { n: [102, 10], f: [96, 6] } },
+    sitEat: { torso: 174, head: 172, arms: { n: [30, 175], f: [35, 100] }, legs: { n: [102, 10], f: [96, 6] } },
+    sitLook: { torso: 190, head: 200, arms: { n: [-20, -10], f: [-30, -15] }, legs: { n: [100, 8], f: [94, 4] } },
+    playBow: { torso: 112, head: 150, arms: { n: [18, 90], f: [10, 88] }, legs: { n: [2, -90], f: [-4, -92] } },
+    proneReach: { torso: 86, head: 150, arms: { n: [100, 118], f: [-6, 140] }, legs: { n: [-88, -95], f: [-92, -100] } },
+    proneHappy: { torso: 86, head: 150, arms: { n: [10, 100], f: [-6, 95] }, legs: { n: [-40, -130], f: [-92, -60] } },
+    kneelWork: { torso: 140, head: 150, arms: { n: [45, 20], f: [30, 10] }, legs: { n: [5, -90], f: [0, -92] } },
+    kneelHold: { torso: 176, head: 168, arms: { n: [70, 120], f: [60, 110] }, legs: { n: [80, 0], f: [5, -90] } },
+    carry: { torso: 178, head: 176, arms: { n: [40, 120], f: [30, 110] }, legs: { n: [18, 4], f: [-14, -30] } },
+    reach: { torso: 172, head: 172, arms: { n: [70, 80], f: [-8, -2] }, legs: { n: [14, 0], f: [-10, -4] } },
     // Front view: arms/legs l/r, angles measured outward from straight down.
     front: { view: 'front', torso: 180, head: 180, arms: { l: [10, 6], r: [10, 6] }, legs: { l: [3, 0], r: [3, 0] } },
     frontLook: { view: 'front', torso: 180, head: 186, arms: { l: [14, 30], r: [8, 4] }, legs: { l: [6, 0], r: [6, 0] } },
     frontWave: { view: 'front', torso: 180, head: 176, arms: { l: [150, 165], r: [150, 170] }, legs: { l: [7, 0], r: [7, 0] } },
     frontShrug: { view: 'front', torso: 180, head: 186, arms: { l: [40, 100], r: [40, 100] }, legs: { l: [6, 0], r: [6, 0] } },
+    frontHappy: { view: 'front', torso: 180, head: 176, arms: { l: [30, 60], r: [30, 60] }, legs: { l: [8, 0], r: [8, 0] } },
+    frontDance: { view: 'front', torso: 178, head: 172, arms: { l: [120, 150], r: [60, 120] }, legs: { l: [16, 0], r: [2, 0] } },
     sleep: { special: 'sleep' }
   };
   JW.humanPoses = POSES;

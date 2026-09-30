@@ -10,15 +10,46 @@
     gold: { top: '#8aa6c8', mid: '#f0c27a', low: '#f9dd99', sun: '#ffd35a', far: '#a08a8a', land: '#b39655', land2: '#957a42', heave: '#a0934f', line: '#7d6a3a' },
     dusk: { top: '#4a4f86', mid: '#b5739a', low: '#f2b27d', sun: '#ffb45a', far: '#6e5f7a', land: '#8c7a58', land2: '#6e6048', heave: '#7d7a55', line: '#5a4f3c' },
     grey: { top: '#9fa9b0', mid: '#c4cacb', low: '#dfe1dc', sun: null, far: '#8e9794', land: '#a29d6c', land2: '#878356', heave: '#949a61', line: '#6f6d49' },
+    night: { top: '#0d1433', mid: '#1f2d5c', low: '#3a4f7e', sun: null, far: '#2d3a58', land: '#3d4a4a', land2: '#2c3636', heave: '#44524d', line: '#27302e', stars: true },
+    sunset: { top: '#3d4f8a', mid: '#e0897a', low: '#fbc774', sun: '#ff9e45', far: '#6d5a78', land: '#8a7650', land2: '#6b5a3e', heave: '#7e7650', line: '#584a33' },
     memory: { top: '#e8c98d', mid: '#f3dcaa', low: '#f8ead0', sun: '#fff4d0', far: '#b8a58a', land: '#c9b287', land2: '#b39c73', heave: '#bfa878', line: '#9a8563' }
   };
   JW.SKIES = SKIES;
 
-  function sky(w, h, P, hz) {
+  function sky(w, h, P, hz, o) {
     const id = JW.uid('sk');
     const grad = el('linearGradient', { id, x1: 0, y1: 0, x2: 0, y2: 1 },
       el('stop', { offset: 0, 'stop-color': P.top }) + el('stop', { offset: 0.55, 'stop-color': P.mid }) + el('stop', { offset: 1, 'stop-color': P.low }));
-    return el('defs', {}, grad) + el('rect', { x: -5, y: -5, width: w + 10, height: hz + 10, fill: `url(#${id})` });
+    let s = el('defs', {}, grad) + el('rect', { x: -5, y: -5, width: w + 10, height: hz + 10, fill: `url(#${id})` });
+    o = o || {};
+    if (o.aurora) {
+      const rnd = JW.rng('aurora' + w);
+      for (let i = 0; i < 3; i++) {
+        const y0 = hz * (0.18 + i * 0.12);
+        const pts = [];
+        for (let x = -40; x <= w + 40; x += w / 6) pts.push([x, y0 + Math.sin(x / w * 5 + i) * hz * 0.08 + rnd() * 10]);
+        const top = pts.map((p) => [p[0], p[1] - hz * (0.1 + 0.05 * i)]).reverse();
+        s += path(smooth(pts.concat(top), true, 0.8), i === 1 ? '#7fe0a8' : '#5fd6b9', 0, { opacity: 0.28 - i * 0.05 });
+      }
+    }
+    if (P.stars || o.stars) {
+      const rnd = JW.rng('stars' + w + 'x' + h);
+      const n = Math.round(w * hz / 2600);
+      for (let i = 0; i < n; i++) {
+        const x = rnd() * w, y = rnd() * hz * 0.95, r = 0.8 + rnd() * 1.8;
+        s += el('circle', { cx: x, cy: y, r, fill: '#fdf6d8', opacity: 0.6 + rnd() * 0.4 });
+      }
+      if (o.northStar) {
+        const [x, y] = [o.northStar[0] * w, o.northStar[1] * h];
+        s += path(`M${f(x)} ${f(y - 14)}L${f(x + 3)} ${f(y - 3)}L${f(x + 14)} ${f(y)}L${f(x + 3)} ${f(y + 3)}L${f(x)} ${f(y + 14)}L${f(x - 3)} ${f(y + 3)}L${f(x - 14)} ${f(y)}L${f(x - 3)} ${f(y - 3)}Z`, '#fff6c4', 1.2);
+      }
+    }
+    if (o.moon) {
+      const [x, y, r] = [o.moon[0] * w, o.moon[1] * h, (o.moon[2] || 0.04) * w];
+      s += el('circle', { cx: x, cy: y, r, fill: '#f6efd2', stroke: INK, 'stroke-width': 2.2 });
+      s += el('circle', { cx: x + r * 0.35, cy: y - r * 0.2, r: r * 0.85, fill: P.top });
+    }
+    return s;
   }
 
   function sun(x, y, r, P, lw, rays) {
@@ -108,7 +139,7 @@
     const P = Object.assign({}, SKIES[o.sky || 'lime'], o.palette || {});
     const rnd = JW.rng(seed + 'tundra');
     const hz = (o.hz == null ? 0.42 : o.hz) * h;
-    let s = sky(w, h, P, hz);
+    let s = sky(w, h, P, hz, o);
     if (o.sunPath) {
       const sp = o.sunPath;
       s += path(`M${f(sp.x0 * w)} ${f(sp.y * h)}Q${f(w * 0.5)} ${f((sp.y - sp.lift) * h)} ${f(sp.x1 * w)} ${f(sp.y * h)}`, 'none', lw * 0.7, { stroke: shade(P.sun || '#fff', 0.35), 'stroke-dasharray': '4 9' });
@@ -157,7 +188,7 @@
 
   function skyOnly(w, h, o, lw, seed) {
     const P = Object.assign({}, SKIES[o.sky || 'lime'], o.palette || {});
-    let s = sky(w, h, P, h);
+    let s = sky(w, h, P, h, o);
     if (o.sunPath) {
       const sp = o.sunPath;
       s += path(`M${f(sp.x0 * w)} ${f(sp.y * h)}Q${f(w * 0.5)} ${f((sp.y - sp.lift * 2) * h)} ${f(sp.x1 * w)} ${f(sp.y * h)}`, 'none', lw * 0.9, { stroke: shade(P.sun || '#fff', 0.4), 'stroke-dasharray': '3 10' });

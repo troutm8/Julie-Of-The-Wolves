@@ -215,6 +215,10 @@ PLAN.md               this file
   saved place), the art kit (Miyax, young Miyax, Kapugen, Amaroq, Silver, Nails,
   Jello, Kapu, Sister, Zing, Zat, tundra, sky and shore backgrounds, props) and
   Chapter 1 (9 pages).
+- **M2 done:** Part One is complete. Chapter 2 "Wolf Talk" (9 pages), Chapter 3
+  "Food from the Pack" (7 pages) and Chapter 4 "The Caribou Hunt" (6 pages).
+  New art: caribou, night sky with stars, moon and northern lights, sod house,
+  drying rack, ulu, meat, dust cloud, and new poses for Miyax and the wolves.
 
 ## 9. Working on the art
 
